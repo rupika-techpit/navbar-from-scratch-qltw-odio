@@ -1,11 +1,13 @@
- "use client";
+"use client";
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Eye, EyeOff, UserPlus } from "lucide-react";
+import { Eye, EyeOff, UserPlus, LogIn } from "lucide-react";
 import Link from "next/link";
 
-export default function SignUpForm({ onSubmit, loading = false }) {
+export default function AuthForm({ mode = "signup", onSubmit, loading = false }) {
+  const isSignUp = mode === "signup";
+
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -28,50 +30,64 @@ export default function SignUpForm({ onSubmit, loading = false }) {
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="w-full max-w-md rounded-2xl shadow-lg px-8 pb-8 pt-0"
+      className="w-full max-w-md rounded-2xl shadow-lg p-8"
       style={{
-                    borderColor: "var(--border-all)",
-                    backgroundColor: "var(--hover-bg)",
-                    boxShadow: "0 1px 3px var(--shadow-color)",
-                  }}
+        borderColor: "var(--border-all)",
+        backgroundColor: "var(--hover-bg)",
+        boxShadow: "0 1px 3px var(--shadow-color)",
+      }}
     >
       {/* Header */}
       <div className="flex flex-col items-center">
-        <UserPlus className="w-5 h-5 text-[var(--color-secondary)] mb-2" />
-        <h1 className="text-2xl font-semibold">Create Account</h1>
+        {isSignUp ? (
+          <UserPlus className="w-5 h-5 text-[var(--color-secondary)] mb-2" />
+        ) : (
+          <LogIn className="w-5 h-5 text-[var(--color-secondary)] mb-2" />
+        )}
+        <h1 className="text-2xl font-semibold">
+          {isSignUp ? "Create Account" : "Login"}
+        </h1>
         <p className="text-sm text-[var(--muted-foreground)] mt-1">
-          Join us!!
+          {isSignUp ? "Join us!!" : "Welcome back!"}
         </p>
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div>
-            <label className="block text-sm mb-1">First Name</label>
-            <input
-              type="text"
-              name="firstName"
-              value={form.firstName}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 rounded-lg border text-[var(--foreground)] bg-[var(--background)] focus:outline-none focus:border-[var(--color-secondary)] focus:ring-2 focus:ring-[var(--color-secondary)] focus:ring-opacity-30 hover:border-[var(--color-secondary)] transition-all duration-200"
-              style={{ borderColor: "var(--border-color)" }}
-            />
+      <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+        {isSignUp && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-sm mb-1">First Name</label>
+              <input
+                type="text"
+                name="firstName"
+                value={form.firstName}
+                onChange={handleChange}
+                required
+                className="w-full px-3 py-2 rounded-lg border text-[var(--foreground)] bg-[var(--background)]
+                  focus:outline-none focus:border-[var(--color-secondary)]
+                  focus:ring-2 focus:ring-[var(--color-secondary)] focus:ring-opacity-30
+                  hover:border-[var(--color-secondary)] transition-all duration-200"
+                style={{ borderColor: "var(--border-color)" }}
+              />
+            </div>
+            <div>
+              <label className="block text-sm mb-1">Last Name</label>
+              <input
+                type="text"
+                name="lastName"
+                value={form.lastName}
+                onChange={handleChange}
+                required
+                className="w-full px-3 py-2 rounded-lg border text-[var(--foreground)] bg-[var(--background)]
+                  focus:outline-none focus:border-[var(--color-secondary)]
+                  focus:ring-2 focus:ring-[var(--color-secondary)] focus:ring-opacity-30
+                  hover:border-[var(--color-secondary)] transition-all duration-200"
+                style={{ borderColor: "var(--border-color)" }}
+              />
+            </div>
           </div>
-          <div>
-            <label className="block text-sm mb-1">Last Name</label>
-            <input
-              type="text"
-              name="lastName"
-              value={form.lastName}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 rounded-lg border text-[var(--foreground)] bg-[var(--background)] focus:outline-none focus:border-[var(--color-secondary)] focus:ring-2 focus:ring-[var(--color-secondary)] focus:ring-opacity-30 hover:border-[var(--color-secondary)] transition-all duration-200"
-              style={{ borderColor: "var(--border-color)" }}
-            />
-          </div>
-        </div>
+        )}
 
         <div>
           <label className="block text-sm mb-1">Email</label>
@@ -81,7 +97,10 @@ export default function SignUpForm({ onSubmit, loading = false }) {
             value={form.email}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 rounded-lg border text-[var(--foreground)] bg-[var(--background)] focus:outline-none focus:border-[var(--color-secondary)] focus:ring-2 focus:ring-[var(--color-secondary)] focus:ring-opacity-30 hover:border-[var(--color-secondary)] transition-all duration-200"
+            className="w-full px-3 py-2 rounded-lg border text-[var(--foreground)] bg-[var(--background)]
+              focus:outline-none focus:border-[var(--color-secondary)]
+              focus:ring-2 focus:ring-[var(--color-secondary)] focus:ring-opacity-30
+              hover:border-[var(--color-secondary)] transition-all duration-200"
             style={{ borderColor: "var(--border-color)" }}
           />
         </div>
@@ -94,8 +113,11 @@ export default function SignUpForm({ onSubmit, loading = false }) {
             value={form.password}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 rounded-lg border text-[var(--foreground)] bg-[var(--background)] focus:outline-none focus:border-[var(--color-secondary)] focus:ring-2 focus:ring-[var(--color-secondary)] focus:ring-opacity-30 hover:border-[var(--color-secondary)] transition-all duration-200"
-             style={{ borderColor: "var(--border-color)" }}
+            className="w-full px-3 py-2 rounded-lg border text-[var(--foreground)] bg-[var(--background)]
+              focus:outline-none focus:border-[var(--color-secondary)]
+              focus:ring-2 focus:ring-[var(--color-secondary)] focus:ring-opacity-30
+              hover:border-[var(--color-secondary)] transition-all duration-200"
+            style={{ borderColor: "var(--border-color)" }}
           />
           <button
             type="button"
@@ -111,19 +133,33 @@ export default function SignUpForm({ onSubmit, loading = false }) {
           disabled={loading}
           className="w-full py-2 rounded-lg font-medium text-[var(--color-on-secondary)] bg-[var(--color-secondary)] hover:bg-[var(--color-secondary-hover)] transition"
         >
-          {loading ? "Creating..." : "Sign Up"}
+          {loading ? (isSignUp ? "Creating..." : "Logging in...") : isSignUp ? "Sign Up" : "Login"}
         </button>
       </form>
 
       {/* Footer */}
       <div className="text-center mt-6 text-sm text-[var(--muted-foreground)]">
-        Already have an account?{" "}
-        <Link
-          href="/login"
-          className="text-[var(--color-secondary)] hover:underline"
-        >
-          Log in
-        </Link>
+        {isSignUp ? (
+          <>
+            Already have an account?{" "}
+            <Link
+              href="/login"
+              className="text-[var(--color-secondary)] hover:underline"
+            >
+              Log in
+            </Link>
+          </>
+        ) : (
+          <>
+            Don’t have an account?{" "}
+            <Link
+              href="/signUp"
+              className="text-[var(--color-secondary)] hover:underline"
+            >
+              Sign up
+            </Link>
+          </>
+        )}
       </div>
     </motion.div>
   );

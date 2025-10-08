@@ -20,7 +20,7 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[var(--background)] text-[var(--foreground)] px-4">
+    <div className="flex justify-center min-h-screen items-start mt-0 pt-0 bg-[var(--background)] text-[var(--foreground)] px-4">
       <AuthForm mode="login" onSubmit={handleSignUp} loading={loading} />
     </div>
   );
