@@ -28,7 +28,7 @@ export default function SignUpForm({ onSubmit, loading = false }) {
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="w-full max-w-md rounded-2xl shadow-lg p-8"
+      className="w-full max-w-md rounded-2xl shadow-lg px-8 pb-8 pt-0"
       style={{
                     borderColor: "var(--border-all)",
                     backgroundColor: "var(--hover-bg)",
@@ -36,8 +36,8 @@ export default function SignUpForm({ onSubmit, loading = false }) {
                   }}
     >
       {/* Header */}
-      <div className="flex flex-col items-center mb-6">
-        <UserPlus className="w-10 h-10 text-[var(--color-secondary)] mb-2" />
+      <div className="flex flex-col items-center">
+        <UserPlus className="w-5 h-5 text-[var(--color-secondary)] mb-2" />
         <h1 className="text-2xl font-semibold">Create Account</h1>
         <p className="text-sm text-[var(--muted-foreground)] mt-1">
           Join us!!

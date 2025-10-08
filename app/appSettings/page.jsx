@@ -95,9 +95,9 @@ export default function AppSettingsPage() {
           <div style={{ boxShadow: "0 4px 8px var(--shadow-color)" }} className="p-4 rounded-xl">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { label: "Primary", key: "primary" },
-                { label: "Secondary", key: "secondary" },
-                { label: "Tertiary", key: "tertiary" },
+                { label: "App Header", key: "primary" },
+                { label: "Theme/Brand color", key: "secondary" },
+                { label: "Menu/Submenu", key: "tertiary" },
               ].map((item, i) => (
                 <div
                   key={i}

@@ -408,7 +408,7 @@ const Page = () => {
         }}
       >
         {/* =============== Header ===============*/}
-        <div className="flex items-center justify-between px-6 py-1 bg-[var(--color-primary-hover)]">
+        <div className="flex items-center justify-between px-6 py-1 bg-[var(--color-primary)] text-[var(--color-on-primary)]">
           {/* Logo */}
           <Link href="/home" className="flex items-center space-x-2">
             <div className="h-10 w-20 flex items-center justify-center">
@@ -544,7 +544,7 @@ const Page = () => {
                       onClick={() => toggleDropdown(item.name)}
                       className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-md max-w-[120px] ${
                         active === item.name
-                          ? "bg-[var(--color-tertiary-hover)] text-[var(--color-on-tertiary)]"
+                          ? "bg-[var(--color-tertiary)] text-[var(--color-secondary)]"
                           : "hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]"
                       }`}
                     >
@@ -608,7 +608,7 @@ const Page = () => {
                                         setActive(item.name);
                                         setOpenDropdown(null);
                                       }}
-                                      className="flex items-center px-2 py-1 text-sm rounded hover:bg-[var(--color-tertiary-hover)] hover:text-[var(--color-on-tertiary)]"
+                                      className="flex items-center px-2 py-1 text-sm rounded hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]"
                                     >
                                       {sub.icon && (
                                         <sub.icon className="h-4 w-4 mr-2 shrink-0 z-50" />
@@ -731,7 +731,7 @@ const Page = () => {
                             }}
                           >
                             {/* Row */}
-                            <div className="px-2 py-1 flex justify-between items-center hover:bg-[var(--color-tertiary-hover)] hover:text-[var(--color-on-tertiary)] cursor-pointer">
+                            <div className="px-2 py-1 flex justify-between items-center hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)] cursor-pointer">
                               <div className="overflow-hidden max-w-[120px]">
                                 <span
                                   className={`inline-block whitespace-nowrap ${
