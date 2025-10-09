@@ -32,12 +32,14 @@ import { usePathname } from "next/navigation";
 import { useAppSettings } from "../../components/Context/appSettingContext";
 import { darkenColor, lightenColor, getContrastText, getBrightness } from "../../utils/color";
 
+
 const Page = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openMobileDropdown, setOpenMobileDropdown] = useState(null);
   const [active, setActive] = useState("Dashboard");
+
   const [openDropdown, setOpenDropdown] = useState(null);
   const { theme, setTheme } = useTheme();
 
@@ -56,6 +58,7 @@ const Page = () => {
   const isAdmin = true;
   const { appName, appNameForMobile} = useAppSettings();
   console.log(appName, appNameForMobile);
+  
 
   const users = [
     { id: "123", role: "admin" },
@@ -144,7 +147,7 @@ const Page = () => {
       icon: SquareChartGantt,
       headings: [
         {
-          title: "Team- Many options to handle the dashboard pages",
+          title: "Team-Options",
           icon: Book,
           subItems: [
             {
@@ -215,180 +218,180 @@ const Page = () => {
     },
     {
       name: "ReportsRep",
-      path: "/report",
+      path: "/report2",
       headings: [
         {
           title: "System Analytics and Integration",
           icon: Database,
           subItems: [
-            { name: "Analytics", path: "/report/analytics", icon: BookUser },
+            { name: "Analytics", path: "/report2/analytics", icon: BookUser },
             {
               name: "Integration",
-              path: "/report/integration",
+              path: "/report2/integration",
               icon: FileText,
             },
-            { name: "Security", path: "/report/security", icon: ShieldHalf },
+            { name: "Security", path: "/report2/security", icon: ShieldHalf },
           ],
         },
       ],
     },
     {
       name: "AnalyticsAna",
-      path: "/analytics",
+      path: "/analytics2",
       subItems: [
-        { name: "Basic", path: "/analytics/basic" },
-        { name: "Pro", path: "/analytics/pro" },
-        { name: "Enterprise", path: "/analytics/enterprise" },
+        { name: "Basic", path: "/analytics2/basic" },
+        { name: "Pro", path: "/analytics2/pro" },
+        { name: "Enterprise", path: "/analytics2/enterprise" },
       ],
     },
     {
       name: "FormsForm",
-      path: "/forms",
+      path: "/forms2",
     },
     {
       name: "AnalyticAn-AnalyticAn-AnalyticAn",
-      path: "/analytic",
+      path: "/analytic2",
       headings: [
         {
-          title: "parts",
+          title: "parts2",
           subItems: [
-            { name: "About", path: "/analytic/about" },
-            { name: "Team", path: "/analytic/team" },
-            { name: "Careers", path: "/analytic/career" },
+            { name: "About", path: "/analytic2/about" },
+            { name: "Team", path: "/analytic2/team" },
+            { name: "Careers", path: "/analytic2/career" },
           ],
         },
       ],
     },
     {
       name: "TechTec",
-      path: "/tech",
+      path: "/tech2",
       headings: [
         {
           title: "Knowledge",
           subItems: [
-            { name: "About", path: "/tech/about" },
-            { name: "Team", path: "/tech/team" },
-            { name: "Careers", path: "/tech/career" },
+            { name: "About", path: "/tech2/about" },
+            { name: "Team", path: "/tech2/team" },
+            { name: "Careers", path: "/tech2/career" },
           ],
         },
       ],
     },
     {
       name: "ReportsRe",
-      path: "/report",
+      path: "/report3",
       headings: [
         {
           title: "System Analytics and Integration",
           icon: Database,
           subItems: [
-            { name: "Analytics", path: "/report/analytics", icon: BookUser },
+            { name: "Analytics", path: "/report3/analytics", icon: BookUser },
             {
               name: "Integration",
-              path: "/report/integration",
+              path: "/report3/integration",
               icon: FileText,
             },
-            { name: "Security", path: "/report/security", icon: ShieldHalf },
+            { name: "Security", path: "/report3/security", icon: ShieldHalf },
           ],
         },
       ],
     },
     {
       name: "AnalyticsAn",
-      path: "/analytics",
+      path: "/analytics3",
       subItems: [
-        { name: "Basic", path: "/analytics/basic" },
-        { name: "Pro", path: "/analytics/pro" },
-        { name: "Enterprise", path: "/analytics/enterprise" },
+        { name: "Basic", path: "/analytics3/basic" },
+        { name: "Pro", path: "/analytics3/pro" },
+        { name: "Enterprise", path: "/analytics3/enterprise" },
       ],
     },
     {
       name: "Form",
-      path: "/forms",
+      path: "/forms3",
     },
     {
       name: "Analytica",
-      path: "/analytic",
+      path: "/analytic3",
       headings: [
         {
           title: "parts",
           subItems: [
-            { name: "About", path: "/analytic/about" },
-            { name: "Team", path: "/analytic/team" },
-            { name: "Careers", path: "/analytic/career" },
+            { name: "About", path: "/analytic3/about" },
+            { name: "Team", path: "/analytic3/team" },
+            { name: "Careers", path: "/analytic3/career" },
           ],
         },
       ],
     },
     {
       name: "Techi",
-      path: "/tech",
+      path: "/tech3",
       headings: [
         {
           title: "Knowledge",
           subItems: [
-            { name: "About", path: "/tech/about" },
-            { name: "Team", path: "/tech/team" },
-            { name: "Careers", path: "/tech/career" },
+            { name: "About", path: "/tech3/about" },
+            { name: "Team", path: "/tech3/team" },
+            { name: "Careers", path: "/tech3/career" },
           ],
         },
       ],
     },
     {
       name: "ReportsR",
-      path: "/report",
+      path: "/report4",
       headings: [
         {
           title: "System Analytics and Integration",
           icon: Database,
           subItems: [
-            { name: "Analytics", path: "/report/analytics", icon: BookUser },
+            { name: "Analytics", path: "/report4/analytics", icon: BookUser },
             {
               name: "Integration",
-              path: "/report/integration",
+              path: "/report4/integration",
               icon: FileText,
             },
-            { name: "Security", path: "/report/security", icon: ShieldHalf },
+            { name: "Security", path: "/report4/security", icon: ShieldHalf },
           ],
         },
       ],
     },
     {
       name: "AnalyticsA",
-      path: "/analytics",
+      path: "/analytics4",
       subItems: [
-        { name: "Basic", path: "/analytics/basic" },
-        { name: "Pro", path: "/analytics/pro" },
-        { name: "Enterprise", path: "/analytics/enterprise" },
+        { name: "Basic", path: "/analytics4/basic" },
+        { name: "Pro", path: "/analytics4/pro" },
+        { name: "Enterprise", path: "/analytics4/enterprise" },
       ],
     },
     {
       name: "FormsF",
-      path: "/forms",
+      path: "/forms4",
     },
     {
       name: "AnalyticA",
-      path: "/analytic",
+      path: "/analytic4",
       headings: [
         {
           title: "parts",
           subItems: [
-            { name: "About", path: "/analytic/about" },
-            { name: "Team", path: "/analytic/team" },
-            { name: "Careers", path: "/analytic/career" },
+            { name: "About", path: "/analytic4/about" },
+            { name: "Team", path: "/analytic4/team" },
+            { name: "Careers", path: "/analytic4/career" },
           ],
         },
       ],
     },
     {
       name: "TechT",
-      path: "/tech",
+      path: "/tech4",
       headings: [
         {
           title: "Knowledge",
           subItems: [
-            { name: "About", path: "/tech/about" },
-            { name: "Team", path: "/tech/team" },
-            { name: "Careers", path: "/tech/career" },
+            { name: "About", path: "/tech4/about" },
+            { name: "Team", path: "/tech4/team" },
+            { name: "Careers", path: "/tech4/career" },
           ],
         },
       ],
@@ -482,7 +485,7 @@ const Page = () => {
                   >
                     <div className="px-4 pb-1 flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-medium py-1">Sophia Patel</p>
+                        <p className="text-sm font-medium py-1 bg-background text-foreground dark:bg-background dark:text-foreground">Sophia Patel</p>
                         <p className="text-xs text-gray-500 py-1">
                           sophia.patel@email.com
                         </p>
@@ -600,7 +603,9 @@ const Page = () => {
                                   {heading.title}
                                 </p>
                                 <div className="space-y-1">
-                                  {heading.subItems.map((sub) => (
+                                  {heading.subItems.map((sub) => {
+                                     const isActiveSub = pathname === sub.path; // current sub path
+                                    return (
                                     <Link
                                       key={sub.path}
                                       href={sub.path}
@@ -608,7 +613,12 @@ const Page = () => {
                                         setActive(item.name);
                                         setOpenDropdown(null);
                                       }}
-                                      className="flex items-center px-2 py-1 text-sm rounded hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]"
+                                      className={`flex items-center px-2 py-1 text-sm rounded hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]
+                                      ${isActiveSub
+                                            ? "text-[var(--color-secondary)]"
+                                            : ""}
+                                      `}
+                                      
                                     >
                                       {sub.icon && (
                                         <sub.icon className="h-4 w-4 mr-2 shrink-0 z-50" />
@@ -626,7 +636,8 @@ const Page = () => {
                                         </span>
                                       </div>
                                     </Link>
-                                  ))}
+                                  )}
+                                  )}
                                 </div>
                               </div>
                             ))}
@@ -645,7 +656,7 @@ const Page = () => {
                     }}
                     className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-md max-w-[120px] ${
                       active === item.name
-                        ? "bg-[var(--color-tertiary-hover)] text-[var(--color-on-tertiary)]"
+                        ? "bg-[var(--color-tertiary-hover)] text-[var(--color-secondary)]"
                         : "hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]"
                     }`}
                   >
@@ -700,7 +711,12 @@ const Page = () => {
                     >
                       {/* Scrollable list of items */}
                       <div className="py-2 max-h-[calc(100vh-200px)] overflow-y-auto">
-                        {navItems.slice(visibleCount).map((item) => (
+                        {navItems.slice(visibleCount).map((item) => {
+                          // Check if any subItem of this module is active
+                          const isModuleActive = item.headings?.some(heading => 
+                            heading.subItems?.some(sub => pathname === sub.path)
+                          ) || item.subItems?.some(sub => pathname === sub.path);
+                          return (
                           <div
                             key={item.path}
                             className="relative group"
@@ -731,7 +747,12 @@ const Page = () => {
                             }}
                           >
                             {/* Row */}
-                            <div className="px-2 py-1 flex justify-between items-center hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)] cursor-pointer">
+                            <div className={`px-2 py-1 flex justify-between items-center cursor-pointer hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)] ${
+                                isModuleActive
+                                  ? "text-[var(--color-secondary)]"
+                                  : ""
+                              }`}
+                            >
                               <div className="overflow-hidden max-w-[120px]">
                                 <span
                                   className={`inline-block whitespace-nowrap ${
@@ -771,10 +792,11 @@ const Page = () => {
                                 isVisible={hoveredMoreItem === item.name}
                                 onClose={() => setHoveredMoreItem(null)}
                                 setActive={setActive}
+                                pathname={pathname} // Pass pathname to SubmenuPortal
                               />
                             )}
                           </div>
-                        ))}
+                        )})}
                       </div>
                     </motion.div>
                   )}

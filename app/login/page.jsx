@@ -1,27 +1,40 @@
 "use client";
 
 import { useState } from "react";
-import AuthForm from "@/components/auth/SignUp";
+import AuthForm from "@/components/auth/AuthForm";
 
-export default function SignUpPage() {
+export default function LoginPage() {
   const [loading, setLoading] = useState(false);
 
-  const handleSignUp = async (formData) => {
-    setLoading(true); // start loading
-    console.log("User Submitted:", formData);
+  const handleLogin = async (formData) => {
+    setLoading(true);
+    console.log("Login Data:", formData);
+    
     try {
-      // Call your API or Catalyst function here
-      // await api.signUp(formData);
+      // Your login API call here
+      // Example:
+      // const response = await fetch('/api/auth/login', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(formData)
+      // });
+      // const result = await response.json();
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      console.log("Login successful!", formData);
+      
     } catch (error) {
-      console.error("Sign-up error:", error);
+      console.error("Login error:", error);
+      // Handle error (show toast, set form errors, etc.)
     } finally {
-      setLoading(false); // stop loading
+      setLoading(false);
     }
   };
 
   return (
     <div className="flex justify-center min-h-screen items-start mt-0 pt-0 bg-[var(--background)] text-[var(--foreground)] px-4">
-      <AuthForm mode="login" onSubmit={handleSignUp} loading={loading} />
+      <AuthForm mode="login" onSubmit={handleLogin} loading={loading} />
     </div>
   );
 }

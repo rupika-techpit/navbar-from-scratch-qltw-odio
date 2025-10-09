@@ -11,6 +11,7 @@ export default function SubmenuPortal({
   isVisible,
   onClose,
   setActive,
+  pathname, // Add this prop
 }) {
   const [mounted, setMounted] = useState(false);
 
@@ -64,7 +65,9 @@ export default function SubmenuPortal({
                   {heading.title}
                 </p>
                 <div className="space-y-1">
-                  {heading.subItems?.map((sub) => (
+                  {heading.subItems?.map((sub) => {
+                    const isActiveSub = pathname === sub.path;
+                    return (
                     <Link
                       key={sub.path}
                       href={sub.path}
@@ -72,12 +75,17 @@ export default function SubmenuPortal({
                         setActive(item.name);
                         onClose();
                       }}
-                      className="flex items-center px-2 py-1 text-sm rounded hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]"
+                      className={`flex items-center px-2 py-1 text-sm rounded hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]
+                        ${
+                          isActiveSub
+                            ? "text-[var(--color-secondary)]"
+                            : ""
+                        }`}
                     >
                       {sub.icon && <sub.icon className="h-4 w-4 mr-2 shrink-0" />}
                       <span className="truncate">{sub.name}</span>
                     </Link>
-                  ))}
+                  )})}
                 </div>
               </div>
             ))}

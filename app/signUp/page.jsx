@@ -1,21 +1,34 @@
 "use client";
 
 import { useState } from "react";
-import AuthForm from "@/components/auth/SignUp";
+import AuthForm from "@/components/auth/AuthForm";
 
 export default function SignUpPage() {
   const [loading, setLoading] = useState(false);
 
   const handleSignUp = async (formData) => {
-    setLoading(true); // start loading
-    console.log("User Submitted:", formData);
+    setLoading(true);
+    console.log("Sign Up Data:", formData);
+    
     try {
-      // Call your API or Catalyst function here
-      // await api.signUp(formData);
+      // Your signup API call here
+      // Example:
+      // const response = await fetch('/api/auth/signup', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(formData)
+      // });
+      // const result = await response.json();
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      console.log("Sign up successful!", formData);
+      
     } catch (error) {
       console.error("Sign-up error:", error);
+      // Handle error (show toast, set form errors, etc.)
     } finally {
-      setLoading(false); // stop loading
+      setLoading(false);
     }
   };
 
@@ -25,4 +38,3 @@ export default function SignUpPage() {
     </div>
   );
 }
-
