@@ -75,11 +75,11 @@ export default function SubmenuPortal({
                         setActive(item.name);
                         onClose();
                       }}
-                      className={`flex items-center px-2 py-1 text-sm rounded hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]
+                      className={`flex items-center px-2 py-1 text-sm rounded 
                         ${
                           isActiveSub
                             ? "text-[var(--color-secondary)]"
-                            : ""
+                            : "hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]"
                         }`}
                     >
                       {sub.icon && <sub.icon className="h-4 w-4 mr-2 shrink-0" />}

@@ -538,7 +538,12 @@ const Page = () => {
         >
           <div className="flex space-x-8 flex-1 min-w-0" ref={navRef}>
             {/* visible modules */}
-            {navItems.slice(0, visibleCount).map((item) => (
+            {navItems.slice(0, visibleCount).map((item) => {
+              const isParentActive =
+                item.headings?.some(h =>
+                  h.subItems?.some(sub => pathname === sub.path)
+                ) || pathname === item.path;
+              return (
               <div key={item.path} className="relative">
                 {item.headings || item.subItems ? (
                   // === Module with dropdown ===
@@ -546,7 +551,7 @@ const Page = () => {
                     <button
                       onClick={() => toggleDropdown(item.name)}
                       className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-md max-w-[120px] ${
-                        active === item.name
+                        isParentActive
                           ? "bg-[var(--color-tertiary)] text-[var(--color-secondary)]"
                           : "hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]"
                       }`}
@@ -613,10 +618,10 @@ const Page = () => {
                                         setActive(item.name);
                                         setOpenDropdown(null);
                                       }}
-                                      className={`flex items-center px-2 py-1 text-sm rounded hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]
+                                      className={`flex items-center px-2 py-1 text-sm rounded
                                       ${isActiveSub
                                             ? "text-[var(--color-secondary)]"
-                                            : ""}
+                                            : "hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]"}
                                       `}
                                       
                                     >
@@ -655,7 +660,7 @@ const Page = () => {
                       setOpenDropdown(null);
                     }}
                     className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-md max-w-[120px] ${
-                      active === item.name
+                      isParentActive
                         ? "bg-[var(--color-tertiary-hover)] text-[var(--color-secondary)]"
                         : "hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]"
                     }`}
@@ -672,7 +677,7 @@ const Page = () => {
                   </Link>
                 )}
               </div>
-            ))}
+            )})}
 
             {/* === More (...) Button === */}
             {visibleCount < navItems.length && (
@@ -747,10 +752,10 @@ const Page = () => {
                             }}
                           >
                             {/* Row */}
-                            <div className={`px-2 py-1 flex justify-between items-center cursor-pointer hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)] ${
+                            <div className={`px-2 py-1 flex justify-between items-center cursor-pointer ${
                                 isModuleActive
                                   ? "text-[var(--color-secondary)]"
-                                  : ""
+                                  : "hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]"
                               }`}
                             >
                               <div className="overflow-hidden max-w-[120px]">
@@ -925,7 +930,12 @@ const Page = () => {
               }}
               onTouchMove={(e) => e.stopPropagation()} // mobile
             >
-              {navItems.map((item) => (
+              {navItems.map((item) => {
+                 // Check if any subItem of this module is active
+                  const isModuleActive = item.headings?.some(heading => 
+                    heading.subItems?.some(sub => pathname === sub.path)
+                  ) || item.subItems?.some(sub => pathname === sub.path);
+                return (
                 <div key={item.path} className="space-y-1">
                   {/* Module button */}
                   <button
@@ -934,7 +944,11 @@ const Page = () => {
                         openMobileDropdown === item.name ? null : item.name
                       )
                     }
-                    className="flex justify-between w-full text-left px-3 py-2 rounded-md hover:bg-[var(--hover-bg)] items-center max-w-full"
+                    className={`flex justify-between w-full text-left px-3 py-2 rounded-md hover:bg-[var(--hover-bg)] items-center max-w-full ${
+                      isModuleActive
+                        ? "text-[var(--color-secondary)]"
+                        : "hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]"
+                    }`}
                   >
                     <div className="overflow-hidden max-w-[230px]">
                       <span
@@ -980,7 +994,9 @@ const Page = () => {
                                 {heading.title}
                               </p>
                               <div className="space-y-1 max-w-full">
-                                {heading.subItems.map((sub) => (
+                                {heading.subItems.map((sub) => {
+                                  const isActiveSub = pathname === sub.path;
+                                  return (
                                   <Link
                                     key={sub.path}
                                     href={sub.path}
@@ -988,7 +1004,13 @@ const Page = () => {
                                       setActive(item.name);
                                       setIsMobileMenuOpen(false);
                                     }}
-                                    className="flex items-center px-2 py-1 rounded hover:bg-[var(--hover-bg)] overflow-hidden"
+                                    className={`flex items-center px-2 py-1 rounded hover:bg-[var(--hover-bg)] overflow-hidden
+                                      ${
+                                        isActiveSub
+                                          ? "text-[var(--color-secondary)]"
+                                          : "hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]"
+                                      }`
+                                    }
                                   >
                                     {sub.icon && (
                                       <sub.icon className="h-4 w-4 mr-2 shrink-0 z-50" />
@@ -1005,41 +1027,48 @@ const Page = () => {
                                       </span>
                                     </div>
                                   </Link>
-                                ))}
+                                )})}
                               </div>
                             </div>
                           ))}
 
                         {/* SubItems without heading */}
                         {item.subItems &&
-                          item.subItems.map((sub) => (
-                            <Link
-                              key={sub.path}
-                              href={sub.path}
-                              onClick={() => {
-                                setActive(item.name);
-                                setIsMobileMenuOpen(false);
-                              }}
-                              className="flex items-center px-2 py-1 text-sm rounded hover:bg-[var(--hover-bg)] overflow-hidden"
-                            >
-                              {sub.icon && (
-                                <sub.icon className="h-4 w-4 mr-2 shrink-0 z-50" />
-                              )}
-                              <div className="relative overflow-hidden flex-1">
-                                <span
-                                  className={`inline-block whitespace-nowrap ${
-                                    sub.name.length > 12 ? "auto-scroll" : ""
-                                  }`}
-                                >
-                                  {sub.name}
-                                </span>
-                              </div>
-                            </Link>
-                          ))}
+                        item.subItems.map((sub) => {
+                          const isActiveSub = pathname === sub.path;
+                          return (
+                          <Link
+                            key={sub.path}
+                            href={sub.path}
+                            onClick={() => {
+                              setActive(item.name);
+                              setIsMobileMenuOpen(false);
+                            }}
+                            className={`flex items-center px-2 py-1 text-sm rounded hover:bg-[var(--hover-bg)] overflow-hidden
+                              ${
+                              isActiveSub
+                                ? "text-[var(--color-secondary)]"
+                                : "hover:bg-[var(--color-tertiary)] hover:text-[var(--color-on-tertiary)]"
+                            }`}
+                          >
+                            {sub.icon && (
+                              <sub.icon className="h-4 w-4 mr-2 shrink-0 z-50" />
+                            )}
+                            <div className="relative overflow-hidden flex-1">
+                              <span
+                                className={`inline-block whitespace-nowrap ${
+                                  sub.name.length > 12 ? "auto-scroll" : ""
+                                }`}
+                              >
+                                {sub.name}
+                              </span>
+                            </div>
+                          </Link>
+                        )})}
                       </div>
                     )}
                 </div>
-              ))}
+              )})}
             </div>
           </div>
         )}
