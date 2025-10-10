@@ -47,7 +47,7 @@ export default function NotFound() {
         className="mt-6"
       >
         <Link
-          href="/dashboard"
+          href="/"
           className="inline-flex items-center px-6 py-2 rounded-md bg-[var(--color-secondary)] text-white font-medium hover:opacity-90 transition-all"
         >
           Go Back Home
